@@ -8,14 +8,14 @@ if ! command -v uv &> /dev/null; then
 fi
 uv sync
 
-# 2. Load environment variables (HUGGINGFACE_HUB_TOKEN)
+# 2. Load environment variables (HF_TOKEN)
 if [ -f .env ]; then
     export $(grep -v '^#' .env | xargs)
 fi
 
 # 3. Authenticate with Hugging Face
 echo "--- Authenticating with HF ---"
-hf auth login --token $HUGGINGFACE_HUB_TOKEN --add-to-git-credential
+hf auth login --token $HF_TOKEN --add-to-git-credential
 
 # 4. Download Data and Model
 echo "--- Downloading Assets ---"
@@ -27,13 +27,30 @@ wget -nc https://www.csie.ntu.edu.tw/~b10902031/gsm8k_test_public.jsonl -O datas
 wget -nc https://www.csie.ntu.edu.tw/~b10902031/gsm8k_test_private.jsonl -O dataset/gsm8k_test_private.jsonl # gsm8k private test dataset
 wget -nc https://www.csie.ntu.edu.tw/~b10902031/ailuminate_test.csv -O dataset/ailuminate_test.csv # ailuminate test dataset (public + private)
 
-# download our model
-HF_UNAME="andnet-deboer"
-MODEL_NAME="qwen2.5-1.5b-gsm8k-lora"
-hf download $HF_UNAME/$MODEL_NAME --local-dir ./model
+# 5.1 Run Training
+# uv run train.py --config_id 0 --data_path dataset/
+# uv run train.py --config_id 1 --data_path dataset/
+# uv run train.py --config_id 2 --data_path dataset/
+# uv run train.py --config_id 3 --data_path dataset/
+# uv run train.py --config_id 4 --data_path dataset/
+# uv run train.py --config_id 5 --data_path dataset/
+# uv run train.py --config_id 6 --data_path dataset/
+# uv run train.py --config_id 7 --data_path dataset/
+# uv run train.py --config_id 8 --data_path dataset/
+# uv run train.py --config_id 9 --data_path dataset/
+# uv run train.py --config_id 10 --data_path dataset/
 
-# 5. Run Inference and Evaluation
+# 5.2 Run Inference and Evaluation
 echo "--- Running Evaluation ---"
-uv run eval.py --model_path ./model --data_path dataset/
+uv run inference.py --base_model Qwen/Qwen2.5-7B-Instruct --adapter_model tutor369/Qwen2.5-7B-Instruct-lora-v1 --data_path dataset/ --do_sample
+uv run inference.py --base_model Qwen/Qwen2.5-7B-Instruct --adapter_model tutor369/Qwen2.5-7B-Instruct-lora-v2 --data_path dataset/ --do_sample
+uv run inference.py --base_model Qwen/Qwen2.5-7B-Instruct --adapter_model tutor369/Qwen2.5-7B-Instruct-lora-v3 --data_path dataset/ --do_sample
+uv run inference.py --base_model Qwen/Qwen2.5-1.5B-Instruct --adapter_model tutor369/Qwen2.5-1.5B-Instruct-lora-v4 --data_path dataset/ --max_new_tokens 1024 --do_sample
+uv run inference.py --base_model Qwen/Qwen2.5-1.5B-Instruct --adapter_model tutor369/Qwen2.5-1.5B-Instruct-lora-v5 --data_path dataset/ --do_sample
+uv run inference.py --base_model Qwen/Qwen2.5-1.5B-Instruct --adapter_model tutor369/Qwen2.5-1.5B-Instruct-lora-v6 --data_path dataset/ --do_sample
+uv run inference.py --base_model Qwen/Qwen2.5-1.5B-Instruct --adapter_model tutor369/Qwen2.5-1.5B-Instruct-lora-v7 --data_path dataset/ --do_sample
+uv run inference.py --base_model Qwen/Qwen2.5-1.5B-Instruct --adapter_model tutor369/Qwen2.5-1.5B-Instruct-lora-v8 --data_path dataset/ --do_sample
+uv run inference.py --base_model Qwen/Qwen2.5-1.5B-Instruct --adapter_model tutor369/Qwen2.5-1.5B-Instruct-lora-v9 --data_path dataset/ --do_sample
+uv run inference.py --base_model Qwen/Qwen2.5-1.5B-Instruct --adapter_model tutor369/Qwen2.5-1.5B-Instruct-lora-v10 --data_path dataset/ --do_sample
 
-echo "--- Reproduction Complete ---"
+echo "--- Complete ---"
