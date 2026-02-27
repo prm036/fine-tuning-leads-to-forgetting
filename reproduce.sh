@@ -42,15 +42,15 @@ wget -nc https://www.csie.ntu.edu.tw/~b10902031/ailuminate_test.csv -O dataset/a
 
 # 5.2 Run Inference and Evaluation
 echo "--- Running Evaluation ---"
-uv run inference.py --base_model Qwen/Qwen2.5-7B-Instruct --adapter_model tutor369/Qwen2.5-7B-Instruct-lora-v1 --data_path dataset/ --do_sample
-uv run inference.py --base_model Qwen/Qwen2.5-7B-Instruct --adapter_model tutor369/Qwen2.5-7B-Instruct-lora-v2 --data_path dataset/ --do_sample
-uv run inference.py --base_model Qwen/Qwen2.5-7B-Instruct --adapter_model tutor369/Qwen2.5-7B-Instruct-lora-v3 --data_path dataset/ --do_sample
-uv run inference.py --base_model Qwen/Qwen2.5-1.5B-Instruct --adapter_model tutor369/Qwen2.5-1.5B-Instruct-lora-v4 --data_path dataset/ --max_new_tokens 1024 --do_sample
-uv run inference.py --base_model Qwen/Qwen2.5-1.5B-Instruct --adapter_model tutor369/Qwen2.5-1.5B-Instruct-lora-v5 --data_path dataset/ --do_sample
-uv run inference.py --base_model Qwen/Qwen2.5-1.5B-Instruct --adapter_model tutor369/Qwen2.5-1.5B-Instruct-lora-v6 --data_path dataset/ --do_sample
-uv run inference.py --base_model Qwen/Qwen2.5-1.5B-Instruct --adapter_model tutor369/Qwen2.5-1.5B-Instruct-lora-v7 --data_path dataset/ --do_sample
-uv run inference.py --base_model Qwen/Qwen2.5-1.5B-Instruct --adapter_model tutor369/Qwen2.5-1.5B-Instruct-lora-v8 --data_path dataset/ --do_sample
-uv run inference.py --base_model Qwen/Qwen2.5-1.5B-Instruct --adapter_model tutor369/Qwen2.5-1.5B-Instruct-lora-v9 --data_path dataset/ --do_sample
-uv run inference.py --base_model Qwen/Qwen2.5-1.5B-Instruct --adapter_model tutor369/Qwen2.5-1.5B-Instruct-lora-v10 --data_path dataset/ --do_sample
+uv run inference.py --base_model Qwen/Qwen2.5-7B-Instruct --adapter_model tutor369/Qwen2.5-7B-Instruct-lora-v1 --data_path dataset/ --do_sample --test_and_shot 5
+uv run inference.py --base_model Qwen/Qwen2.5-7B-Instruct --adapter_model tutor369/Qwen2.5-7B-Instruct-lora-v2 --data_path dataset/ --do_sample --test_and_shot 0 
+uv run inference.py --base_model Qwen/Qwen2.5-7B-Instruct --adapter_model tutor369/Qwen2.5-7B-Instruct-lora-v3 --data_path dataset/ --do_sample --test_and_shot 5
+uv run inference.py --base_model Qwen/Qwen2.5-1.5B-Instruct --adapter_model tutor369/Qwen2.5-1.5B-Instruct-lora-v4 --data_path dataset/ --max_new_tokens 1024 --do_sample --test_and_shot 8
+uv run inference.py --base_model Qwen/Qwen2.5-1.5B-Instruct --adapter_model tutor369/Qwen2.5-1.5B-Instruct-lora-v5 --data_path dataset/ --do_sample --test_and_shot 0 
+uv run inference.py --base_model Qwen/Qwen2.5-1.5B-Instruct --adapter_model tutor369/Qwen2.5-1.5B-Instruct-lora-v6 --data_path dataset/ --do_sample --test_and_shot 5
+uv run inference.py --base_model Qwen/Qwen2.5-1.5B-Instruct --adapter_model tutor369/Qwen2.5-1.5B-Instruct-lora-v7 --data_path dataset/ --do_sample --test_and_shot 5
+uv run inference.py --base_model Qwen/Qwen2.5-1.5B-Instruct --adapter_model tutor369/Qwen2.5-1.5B-Instruct-lora-v8 --data_path dataset/ --do_sample --test_and_shot 5
+uv run inference.py --base_model Qwen/Qwen2.5-1.5B-Instruct --adapter_model tutor369/Qwen2.5-1.5B-Instruct-lora-v9 --data_path dataset/ --do_sample --test_and_shot 5
+uv run inference.py --base_model Qwen/Qwen2.5-1.5B-Instruct --adapter_model tutor369/Qwen2.5-1.5B-Instruct-lora-v10 --data_path dataset/ --do_sample --test_and_shot 5
 
 echo "--- Complete ---"

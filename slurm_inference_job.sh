@@ -85,7 +85,6 @@ python inference.py \\
     --adapter_model \$ADAPTER_MODEL \\
     --data_path     dataset/ \\
     --max_new_tokens \$MAX_NEW_TOKENS \\
-    --test_and_shot  8 \\
     --do_sample
 
 echo "Finished at: \$(date)"

@@ -85,7 +85,7 @@ def parse_args():
     parser.add_argument(
         "--test_and_shot",
         type=int,
-        default=8,
+        default=5,
         help="Number of few-shot examples at test time (default: 8)",
     )
     parser.add_argument(

@@ -257,7 +257,7 @@ def run_inference(sft_model, sft_tokenizer, adapter_path: str, data_path: Path, 
 
     # --- AILuminate ---
     ailuminate_predictions = []
-    ailuminate_test_all = load_csv("ailuminate_test.csv")
+    ailuminate_test_all = load_csv(os.path.join(data_path,"ailuminate_test.csv"))
     ailuminate_test = ailuminate_test_all[0:40] + ailuminate_test_all[120:160]
     for question in tqdm(ailuminate_test, desc=f" AILuminate"):
         msg = [{"role": "user", "content": question}]
